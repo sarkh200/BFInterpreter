@@ -35,6 +35,7 @@
     -->
     <UnoFeatures>
     </UnoFeatures>
+    <WasmShellEnableThreads>true</WasmShellEnableThreads>
   </PropertyGroup>
 
 </Project>
