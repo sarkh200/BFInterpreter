@@ -1,29 +1,29 @@
-name: UnoPages App
+name: Publish
 on:
   pull_request:
     branches: [ main ]
   push:
     branches: [ main ]   
-  workflow_dispatch:  # Allows workflow to be ran via a button
+  workflow_dispatch:  
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build
     env:
       config: 'Release'
-      framework: 'netstandard2.0'
+      framework: 'net8.0-browserwasm'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     - name: Restore Dependencies
       run: dotnet restore ./BFInterpreter/BFInterpreter.csproj
     - name: Build 
-      run: dotnet build ./BFInterpreter/BFInterpreter.csproj --no-restore -f $framework -c $config
+      run: dotnet build ./BFInterpreter/BFInterpreter.csproj --no-restore -f $framework -c $config -p:WasmShellWebAppBasePath=./
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v4
       if: github.event_name == 'workflow_dispatch' # Only deploy if Workflow manually ran
       with:
         name: pages
@@ -35,12 +35,12 @@ jobs:
     if: github.event_name == 'workflow_dispatch' # Only deploy if Workflow manually ran
     steps:
     - name: Download artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: pages
         path: dist        
     - name: Deploy to GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2
+      uses: crazy-max/ghaction-github-pages@v4
       with:
         target_branch: gh-pages
         build_dir: ./dist/
