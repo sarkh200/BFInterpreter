@@ -19,15 +19,15 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore Dependencies
-      run: dotnet restore ./BFInterpreter/BFInterpreter/BFInterpreter.csproj
+      run: dotnet restore ./BFInterpreter/BFInterpreter.csproj
     - name: Build 
-      run: dotnet build ./BFInterpreter/BFInterpreter/BFInterpreter.csproj --no-restore -f $framework -c $config
+      run: dotnet build ./BFInterpreter/BFInterpreter.csproj --no-restore -f $framework -c $config
     - name: Publish Artifacts
       uses: actions/upload-artifact@v1.0.0
       if: github.event_name == 'workflow_dispatch' # Only deploy if Workflow manually ran
       with:
         name: pages
-        path: ./BFInterpreter/BFInterpreter/bin/${{env.config}}/${{env.framework}}/dist/        
+        path: ./BFInterpreter/bin/${{env.config}}/${{env.framework}}/dist/        
   deploy:
     needs: build 
     runs-on: ubuntu-latest
