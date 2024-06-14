@@ -1,5 +1,3 @@
-using System;
-using Microsoft.Extensions.Logging;
 using Uno.Resizetizer;
 
 namespace BFInterpreter;
@@ -11,7 +9,7 @@ public partial class App: Application
     /// </summary>
     public App()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     protected Window? MainWindow { get; private set; }
@@ -76,9 +74,9 @@ public partial class App: Application
         var factory = LoggerFactory.Create(builder =>
         {
 #if __WASM__
-            builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
+			builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
 #elif __IOS__ || __MACCATALYST__
-            builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
+			builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
 #else
             builder.AddConsole();
 #endif

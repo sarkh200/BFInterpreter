@@ -10,16 +10,20 @@
 			<RowDefinition>10*</RowDefinition>
 			<RowDefinition>5*</RowDefinition>
 		</Grid.RowDefinitions>
+
 		<TextBlock
 			Grid.Row="0"
 			Margin="0,0,0,10"
 			FontSize="20">
 			Enter Code Below:
 		</TextBlock>
+
 		<TextBox
+			Name="CodeTextBox"
 			Grid.Row="1"
 			AcceptsReturn="True"
 			TextWrapping="Wrap" />
+
 		<Grid Grid.Row="2">
 			<Grid.RowDefinitions>
 				<RowDefinition>Auto</RowDefinition>
@@ -32,19 +36,24 @@
 			</Grid.ColumnDefinitions>
 
 			<Button
+				Name="RunButton"
 				Grid.Row="0"
 				Grid.Column="0"
 				Margin="2,5,2,5"
 				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch">
+				VerticalAlignment="Stretch"
+				Click="RunButton_Click">
 				Run
 			</Button>
+
 			<Button
+				Name="ClearButton"
 				Grid.Row="0"
 				Grid.Column="1"
 				Margin="2,5,2,5"
 				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch">
+				VerticalAlignment="Stretch"
+				Click="ClearButton_Click">
 				Clear
 			</Button>
 
@@ -53,22 +62,51 @@
 					<RowDefinition>Auto</RowDefinition>
 					<RowDefinition>1*</RowDefinition>
 				</Grid.RowDefinitions>
-				<TextBlock Grid.Row="0" FontSize="15">Output:</TextBlock>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition>1*</ColumnDefinition>
+					<ColumnDefinition>Auto</ColumnDefinition>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock
+					Grid.Row="0"
+					VerticalAlignment="Center"
+					FontSize="20">
+					Output:
+				</TextBlock>
+
+				<Button
+					Name="ClearOutputButton"
+					Grid.Row="0"
+					Grid.Column="1"
+					Click="ClearOutputButton_Click">
+					Clear Output
+				</Button>
+
 				<TextBox
+					Name="OutputBox"
 					Grid.Row="1"
+					Grid.ColumnSpan="2"
 					Margin="0,5,0,5"
+					AllowFocusOnInteraction="False"
 					IsReadOnly="True" />
 			</Grid>
+
 			<Grid Grid.Row="2" Grid.ColumnSpan="2">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition>1*</ColumnDefinition>
 					<ColumnDefinition>Auto</ColumnDefinition>
 				</Grid.ColumnDefinitions>
-				<TextBox />
+
+				<TextBox
+					Name="InputTextBox"
+					Grid.Column="0"
+					KeyDown="InputTextBox_KeyDown" />
+
 				<Button
+					Name="SendButton"
 					Grid.Column="1"
 					Margin="2"
-					HorizontalAlignment="Right">
+					Click="SendButton_Click">
 					>
 				</Button>
 			</Grid>
