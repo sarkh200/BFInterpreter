@@ -22,7 +22,7 @@ jobs:
       run: dotnet build ./BFInterpreter/BFInterpreter.csproj --no-restore -f $framework -c $config -p:WasmShellWebAppBasePath=./
 
     - name: Add COOP and COEP
-      run: cd ./BFInterpreter/bin/${{env.config}}/${{env.framework}}/dist/ && curl -o coi-serviceworker.js https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.js && sed -i '/<\/head>/ i <script src="coi-serviceworker.js"></script>' *.html
+      run: curl -o ./BFInterpreter/bin/${{env.config}}/${{env.framework}}/dist/coi-serviceworker.js https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.js && sed -i '/<\/head>/ i <script src="coi-serviceworker.js"></script>' ./BFInterpreter/bin/${{env.config}}/${{env.framework}}/dist/index.html
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4
       if: github.event_name == 'workflow_dispatch' # Only deploy if Workflow manually ran
