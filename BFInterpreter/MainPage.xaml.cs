@@ -4,12 +4,14 @@ namespace BFInterpreter;
 
 public sealed partial class MainPage: Page
 {
+    bool AutoScroll = true;
     public MainPage()
     {
         InitializeComponent();
         progress = new Progress<char>(value =>
         {
             OutputBox.Text += value;
+            OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ViewportHeight);
         });
     }
 
@@ -26,6 +28,7 @@ public sealed partial class MainPage: Page
             stdin.Enqueue(c);
         }
         OutputBox.Text += InputTextBox.Text;
+        OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ScrollableHeight);
         InputTextBox.Text = "";
         waitHandle.Set();
     }
