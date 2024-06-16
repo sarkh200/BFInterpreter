@@ -10,6 +10,7 @@ public sealed partial class MainPage: Page
         progress = new Progress<char>(value =>
         {
             OutputBox.Text += value;
+            OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ViewportHeight);
         });
     }
 
@@ -26,6 +27,7 @@ public sealed partial class MainPage: Page
             stdin.Enqueue(c);
         }
         OutputBox.Text += InputTextBox.Text;
+        OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ScrollableHeight);
         InputTextBox.Text = "";
         waitHandle.Set();
     }

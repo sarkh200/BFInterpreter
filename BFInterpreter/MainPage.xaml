@@ -82,13 +82,18 @@
 					Clear Output
 				</Button>
 
-				<TextBox
-					Name="OutputBox"
+				<ScrollViewer
+					Name="OutputScrollViewer"
 					Grid.Row="1"
 					Grid.ColumnSpan="2"
-					Margin="0,5,0,5"
-					AllowFocusOnInteraction="False"
-					IsReadOnly="True" />
+					Margin="0,5,0,5">
+					<TextBox
+						Name="OutputBox"
+						AcceptsReturn="True"
+						AllowFocusOnInteraction="False"
+						IsReadOnly="True"
+						TextWrapping="Wrap" />
+				</ScrollViewer>
 			</Grid>
 
 			<Grid Grid.Row="2" Grid.ColumnSpan="2">
