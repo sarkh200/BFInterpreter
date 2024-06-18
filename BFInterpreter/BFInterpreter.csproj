@@ -1,7 +1,6 @@
 <Project Sdk="Uno.Sdk">
   <PropertyGroup>
     <TargetFrameworks>
-      net8.0-maccatalyst;
       net8.0-desktop;
       net8.0-browserwasm;
     </TargetFrameworks>
