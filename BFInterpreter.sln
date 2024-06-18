@@ -3,16 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFInterpreter", "BFInterpreter\BFInterpreter.csproj", "{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFInterpreter", "BFInterpreter\BFInterpreter.csproj", "{EDDF9AA9-CABE-49D1-BB2C-B15CA03E453E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3636F774-C1A9-4F75-AA24-F6A540F1752E}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
-		Directory.Packages.props = Directory.Packages.props
-		global.json = global.json
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFInterpreter.Desktop", "BFInterpreter.Desktop\BFInterpreter.Desktop.csproj", "{A87F9A0F-6677-41C2-A4F0-8A76B0612F6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFInterpreter.Browser", "BFInterpreter.Browser\BFInterpreter.Browser.csproj", "{491C9F1D-117C-48CB-A15D-5F6325182E1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,17 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B2E90B9-2D52-478F-BD80-6DA7E2EC1A75}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EDDF9AA9-CABE-49D1-BB2C-B15CA03E453E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDF9AA9-CABE-49D1-BB2C-B15CA03E453E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDF9AA9-CABE-49D1-BB2C-B15CA03E453E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDF9AA9-CABE-49D1-BB2C-B15CA03E453E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A87F9A0F-6677-41C2-A4F0-8A76B0612F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A87F9A0F-6677-41C2-A4F0-8A76B0612F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A87F9A0F-6677-41C2-A4F0-8A76B0612F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A87F9A0F-6677-41C2-A4F0-8A76B0612F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491C9F1D-117C-48CB-A15D-5F6325182E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491C9F1D-117C-48CB-A15D-5F6325182E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491C9F1D-117C-48CB-A15D-5F6325182E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491C9F1D-117C-48CB-A15D-5F6325182E1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D9094915-82D5-4266-B5F4-76E5812859A7}
+		SolutionGuid = {4D425100-0C4E-4D9E-87F0-E0EA48CE86DA}
 	EndGlobalSection
 EndGlobal
