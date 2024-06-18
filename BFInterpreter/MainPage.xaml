@@ -86,11 +86,13 @@
 					Name="OutputScrollViewer"
 					Grid.Row="1"
 					Grid.ColumnSpan="2"
-					Margin="0,5,0,5">
+					Margin="0,5,0,5"
+					VerticalScrollBarVisibility="Auto">
 					<TextBox
 						Name="OutputBox"
 						AcceptsReturn="True"
 						AllowFocusOnInteraction="False"
+						FontFamily="Courier New"
 						IsReadOnly="True"
 						TextWrapping="Wrap" />
 				</ScrollViewer>

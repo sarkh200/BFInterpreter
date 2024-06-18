@@ -10,7 +10,7 @@ public sealed partial class MainPage: Page
         progress = new Progress<char>(value =>
         {
             OutputBox.Text += value;
-            OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ViewportHeight);
+            OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ExtentHeight);
         });
     }
 
@@ -27,7 +27,7 @@ public sealed partial class MainPage: Page
             stdin.Enqueue(c);
         }
         OutputBox.Text += InputTextBox.Text;
-        OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ScrollableHeight);
+        OutputScrollViewer.ScrollToVerticalOffset(OutputScrollViewer.ExtentHeight);
         InputTextBox.Text = "";
         waitHandle.Set();
     }
@@ -76,20 +76,19 @@ public sealed partial class MainPage: Page
 
     public void InterpretBF(string code, IProgress<char> output, CancellationToken cancellationToken)
     {
-        List<int> labels = [];
-        byte[] m = new byte[30000];
-        Array.Fill(m, (byte) 0);
-        int i = 0;
-        for (int j = 0; j < code.Length; j++)
+        try
         {
-            if (cancellationToken.IsCancellationRequested)
+            Dictionary<int, int> jumps = GetAllJumps(code);
+            List<byte> m = [0];
+            int i = 0;
+            for (int j = 0; j < code.Length; j++)
             {
-                stdin.Clear();
-                return;
-            }
-            char c = code[j];
-            try
-            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    stdin.Clear();
+                    return;
+                }
+                char c = code[j];
                 switch (c)
                 {
                     case '+':
@@ -100,6 +99,8 @@ public sealed partial class MainPage: Page
                         break;
                     case '>':
                         i++;
+                        if (i >= m.Count)
+                            m.Add(0);
                         break;
                     case '<':
                         i--;
@@ -121,51 +122,50 @@ public sealed partial class MainPage: Page
                         m[i] = (byte) firstChar;
                         break;
                     case '[':
-                        if (m[i] != (char) 0)
+                        if (m[i] == (char) 0)
                         {
-                            labels.Add(j);
-                        }
-                        else
-                        {
-                            SeekEndOfLoop(ref j, code);
+                            j = jumps[j];
                         }
                         break;
                     case ']':
                         if (m[i] != (char) 0)
                         {
-                            j = labels.Last();
-                        }
-                        else
-                        {
-                            labels.Remove(labels.Last());
+                            j = jumps[j];
                         }
                         break;
                 }
             }
-            catch (Exception ex)
-            {
-                foreach (char exC in ex.Message.ToString())
-                    progress.Report(exC);
-            }
         }
-    }
-    static void SeekEndOfLoop(ref int j, string code)
-    {
-        char c = code[j];
-        int outOfScopeNum = 1;
-        while (c != ']' || outOfScopeNum != 0)
+        catch (Exception ex)
         {
-            j++;
-            c = code[j];
-            if (c == '[')
-            {
-                outOfScopeNum++;
-            }
-            else if (c == ']' && outOfScopeNum != 0)
-            {
-                outOfScopeNum--;
-            }
+            foreach (char exC in $"Error: {ex.Message.ToString()}")
+                progress.Report(exC);
+            return;
         }
     }
 
+    static Dictionary<int, int> GetAllJumps(string code)
+    {
+        // 1st val is location of char; 2nd val is location it jumps to
+        Dictionary<int, int> jumps = [];
+        for (int i = 0; i < code.Length; i++)
+        {
+            if (code[i] == '[')
+            {
+                int j = i;
+                int loops = 1;
+                while (code[j] != ']' || loops != 0)
+                {
+                    j++;
+                    if (code[j] == '[')
+                        loops++;
+                    else if (code[j] == ']')
+                        loops--;
+                }
+                jumps.Add(j, i);
+                jumps.Add(i, j);
+            }
+        }
+        return jumps;
+    }
 }
