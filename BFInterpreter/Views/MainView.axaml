@@ -5,8 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:BFInterpreter.ViewModels"
-	d:DesignHeight="450"
-	d:DesignWidth="800"
+	d:DesignHeight="640"
+	d:DesignWidth="640"
 	x:DataType="vm:MainViewModel"
 	mc:Ignorable="d">
 	<Design.DataContext>
@@ -104,6 +104,7 @@
 					<TextBox
 						Name="OutputBox"
 						AcceptsReturn="True"
+						Focusable="False"
 						FontFamily="Courier New"
 						IsReadOnly="True"
 						TextWrapping="Wrap" />
@@ -116,10 +117,7 @@
 					<ColumnDefinition>Auto</ColumnDefinition>
 				</Grid.ColumnDefinitions>
 
-				<TextBox
-					Name="InputTextBox"
-					Grid.Column="0"
-					KeyDown="InputTextBox_KeyDown" />
+				<TextBox Name="InputTextBox" Grid.Column="0" />
 
 				<Button
 					Name="SendButton"

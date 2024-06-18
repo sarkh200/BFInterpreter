@@ -5,6 +5,7 @@
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <WasmMainJSPath>wwwroot\main.js</WasmMainJSPath>
     <WasmRuntimeAssetsLocation>./_framework</WasmRuntimeAssetsLocation>
+    <WasmShellEnableThreads>true</WasmShellEnableThreads>
   </PropertyGroup>
 
   <ItemGroup>
